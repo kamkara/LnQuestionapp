@@ -4,7 +4,10 @@ class Exercise < ApplicationRecord
   has_rich_text :content
   has_rich_text :correction
 
-
+  has_many :questions, dependent: :destroy
+  accepts_nested_attributes_for :questions, allow_destroy: true
+  has_many :results, dependent: :destroy
+  
   scope :feed_exercise, -> { order(created_at: :desc)}
 
   extend FriendlyId

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :exercises, except:[:show, :index]
   get 'new-course', to:"courses#new"
+
   resources :courses, except:[:show, :new]
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
