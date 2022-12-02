@@ -1,35 +1,33 @@
 
 <% @title="Accueil" %>
+<!-- Navbar -->
+<%= render "courses/navbar" %>
 
-<%= render "layouts/navbar" %>
 <div class="w-full mt-20">
-    <% if notice.present? %>
-        <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
-
+    <!-- New Course -->
     <div class="flex justify-between items-center">
         <h1 class="font-bold text-4xl">Courses</h1>
         <%= link_to 'New course', "new-course", class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
     </div>
 
+    <!-- Feed Course -->
     <div id="courses" class=" mx-auto md:w-2/3 ">
-
         <% @courses.each do |course| %>
             <%= turbo_frame_tag :feed_course do %>
-            <%= link_to course_path(course) do %>
-                <div class="border m-2 bg-white">
-                    <div class="text-xl p-2">
-                        <h1 class="font-bold"><%= course.title %></h1>
+                <%= link_to course_path(course) do %>
+                    <div class="border m-2 bg-white">
+                        <div class="text-xl p-2">
+                            <h1 class="font-bold"><%= course.title %></h1>
+                        </div>
+                        <div class="border m-2 p-2">
+                            <%= truncate(strip_tags(course.content.to_s.html_safe), length: 500) %>
+                        </div>
                     </div>
-                    <div class="border m-2 p-2">
-                        <%= truncate(strip_tags(course.content.to_s.html_safe), length: 500) %>
-                    </div>
-                </div>
-            <% end %>
+                <% end %>
             <% end %>
         <% end %>
-
     </div>
+
 </div>
 
 

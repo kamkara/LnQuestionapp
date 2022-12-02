@@ -5,11 +5,16 @@ class Exercise < ApplicationRecord
   has_rich_text :correction
 
   has_many :questions, dependent: :destroy
-  accepts_nested_attributes_for :questions, allow_destroy: true
   has_many :results, dependent: :destroy
+  accepts_nested_attributes_for :questions, allow_destroy: true
   
-  scope :feed_exercise, -> { order(created_at: :desc)}
 
+  ########## SCOPES  #############
+  scope :feed_exercise, -> { order(created_at: :desc)}
+  
+  
+  
+  ########## SLUG  #############
   extend FriendlyId
     friendly_id :title, use: :slugged
 
