@@ -1,12 +1,24 @@
 <%= turbo_frame_tag :feed_course do %>
-  <div class="mx-auto w-full flex">
+  <div id="<%= dom_id @course %>" class="mx-auto w-full flex">
+
     <div class="mx-auto">
-      <% if notice.present? %>
-        <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-      <% end %>
+      <!-- Show course card-->
+    <div class="border m-2">
+        <!-- Course detail-->
+        <div class="border bg-white m-2 p-2">
+          <!-- Course title-->
+          <div class="text-xl p-2">
+              <h1 class="font-bold"><%= @course.title %></h1>
+          </div>
+            <%= @course.content %>
+        </div>
+        <!-- Exercises Feed-->
+        <div class="border bg-white m-2">
+            <%= render "courses/shared/exercises", course:@course %>
+        </div>
+    </div>
 
-      <%= render @course %>
-
+        <!-- Options-->
       <%= link_to 'Edit this course', edit_course_path(@course), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
       <div class="inline-block ml-2">
         <%= button_to 'Destroy this course', course_path(@course), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>

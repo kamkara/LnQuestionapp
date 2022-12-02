@@ -9,7 +9,7 @@
     <!-- Exercices feed loop -->
     <% @course.exercises.feed_exercise.each do |exercise| %>
         <div class="border rounded-b-md m-2">
-            <label for="<%= exercise.title %>" class="">
+            <label for="<%= exercise.title %>">
                 <%#= link_to(new_exercise_reponse_path(exercise), class: " text-black") do %>
                 <%#= link_to root_path(), class: " text-black" do %>
                 <%# end %>
@@ -22,10 +22,17 @@
             <input type="checkbox" id="<%= exercise.title %>" class="modal-toggle"/>
             <div class="modal">
                 <div class="modal-box w-8/12 mx-auto max-w-4xl ">
-                    <h3 class="font-bold text-lg"><%= exercise.title %></h3>
-                    <p class="p-2">
-                        <%= truncate(strip_tags(exercise.content.to_s), length: 100) %>
-                    </p>
+                    <h3 class="font-bold text-xl bg-gray-200 my-2 p-2"><%= exercise.title %></h3>
+                    <div class="border p-2 rounded-b-md">
+                        <p class="">
+                            <%= exercise.content.to_s %>
+                        </p>
+                    </div>
+                    <div class=" border my-2 p-2 rounded-b-md">
+                        <p class="">
+                            <%= exercise.correction.to_s %>
+                        </p>
+                    </div>
                     <div class="modal-action">
                         <label for="<%= exercise.title %>" class="btn btn-sm btn-circle">✕</label>
                     </div>
