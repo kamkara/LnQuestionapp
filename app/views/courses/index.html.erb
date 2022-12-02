@@ -8,7 +8,8 @@
         <%= link_to 'New course', "new-course", class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
     </div>
 
-    <div id="courses" class="min-w-full">
+    <div id="courses" class=" mx-auto md:w-2/3 ">
+
         <% @courses.each do |course| %>
             <%= turbo_frame_tag :feed_course do %>
             <%= link_to course_path(course) do %>

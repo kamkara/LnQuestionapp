@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
   
-
-
+  
+  
   resources :courses, only:[:show] do
     resources :exercises, only:[:new, :create, :destroy, :edit, :update]
   end
   
-
-  resources :exercises, except:[:show, :index]
+  
+  resources :exercises, except:[:show, :index] do
+    resources :results
+  end
+  
   get 'new-course', to:"courses#new"
 
   resources :courses, except:[:show, :new]
